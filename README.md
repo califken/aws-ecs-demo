@@ -1,14 +1,30 @@
+Copyright (c) 2021, Alexander Damiani
+
 # aws-ecs-demo
 
-Demo repository for pushing boiler-plate Flask app to AWS ECS.
+## Description
 
+This repo serves as a reference for the [Youtube playlist](https://www.youtube.com/watch?v=kqa_cchAMLY&list=PL0dOL8Z7pG3IWsvseNd-JoFTHL16P_iTC&index=1).
+
+The repo covers pushing a boiler-plate Flask app to AWS ECS with the following topics covered:
+* `AWS IAM (identity and access management)`
+* `AWS ECR (elastic container registry)`
+* `AWS ECS (elastic container service)`
+* `AWS Security Groups`
+* `AWS Route53`
+* `Docker`
+* `CI/CD with GitHub Actions`
+* `AWS SSL`
+* `AWS RDS (relational database storage)` 
+* `AWS Secrets Manager`
+* `AWS EC2 Scheduled Stop/Start`
+* `AWS ECS Monitoring`
+
+## Additional Notes
 `docker-compose.yml` is only for testing the application on your local machine and not in used in the AWS deployment.
 
-[Youtube playlist link](https://www.youtube.com/watch?v=kqa_cchAMLY&list=PL0dOL8Z7pG3IWsvseNd-JoFTHL16P_iTC&index=1)
 
----
-
-### AWS Code Snippets:
+## AWS Code Snippets:
 AWS Secrets Manager - restrict access by IAM role
 
 ```
@@ -29,8 +45,9 @@ AWS Secrets Manager - restrict access by IAM role
   } ]
 }
 ```
+
 Additional notes:
-* Access aws:userid with `aws-cli` and `aws iam get-user --user-name {aws-iam-user-name}`
+* Access `aws:userid` with `aws-cli` and `aws iam get-user --user-name {aws-iam-user-name}`
 
 ## License
 [BSD 3-Clause License](https://github.com/alexanderdamiani/aws-ecs-demo/blob/main/LICENSE)
