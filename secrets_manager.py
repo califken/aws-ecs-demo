@@ -11,7 +11,7 @@ import json
 def get_secret():
 
     secret_name = "aws-ecs-demo-db-cred"
-    region_name = "us-east-1"
+    region_name = "us-west-1"
 
     # Create a Secrets Manager client
     session = boto3.session.Session()
@@ -54,13 +54,9 @@ def get_secret():
         # Depending on whether the secret is a string or binary, one of these fields will be populated.
         if 'SecretString' in get_secret_value_response:
             secret = get_secret_value_response['SecretString']
+            secrets = json.loads(secret)
+            return secrets
         else:
             decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
-
-    # Your code goes here.
-    if secret:
-        secrets = json.loads(secret)
-    elif decoded_binary_secret:
-        secrets = json.loads(decoded_binary_secret)
-
-    return secrets
+            secrets = json.loads(decoded_binary_secret)
+            return secrets

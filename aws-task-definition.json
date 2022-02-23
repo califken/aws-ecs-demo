@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::<<account_id>>:role/ecsTaskExecutionRole",
+  "executionRoleArn": null,
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -29,7 +29,7 @@
       "memoryReservation": 128,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "<<account_id>>.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-demo-ecr",
+      "image": "329787855022.dkr.ecr.us-west-1.amazonaws.com/awsspleeteree",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -46,17 +46,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "aws-ecs-demo-ecr"
+      "name": "awsspleeteree"
     }
   ],
   "placementConstraints": [],
   "memory": null,
-  "taskRoleArn": "arn:aws:iam::<<account_id>>:role/ecsTaskExecutionRole",
+  "taskRoleArn": null,
   "compatibilities": [
+    "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:<<account_id>>:task-definition/aws-ecs-demo-task-definition:1",
-  "family": "aws-ecs-demo-task-definition",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-1:329787855022:task-definition/awsspleetereeservice:1",
+  "family": "awsspleetereeservice",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -69,18 +70,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-ecr-pull"
     }
   ],
   "pidMode": null,
@@ -88,6 +77,7 @@
     "EC2"
   ],
   "networkMode": null,
+  "runtimePlatform": null,
   "cpu": null,
   "revision": 1,
   "status": "ACTIVE",
