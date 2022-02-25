@@ -2,19 +2,40 @@ FROM python:3.8-slim
 
 # to install python package psycopg2 (for postgres)
 RUN apt-get update
-RUN apt-get install -y postgresql libpq-dev postgresql-client postgresql-client-common gcc
+RUN apt-get install -y gcc
 
 # add user (change to whatever you want)
 # prevents running sudo commands
-RUN useradd -r -s /bin/bash alex
+RUN useradd -r -s /bin/bash kennethcaple
 
 # set current env
 ENV HOME /app
 WORKDIR /app
 ENV PATH="/app/.local/bin:${PATH}"
 
-RUN chown -R alex:alex /app
-USER alex
+RUN chown -R kennethcaple:kennethcaple /app
+USER kennethcaple
+
+
+COPY . .
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  locales
+RUN locale-gen en_US.UTF-8  
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8h
+RUN bash miniconda.sh -b -u -p ~/miniconda3
+RUN ~/miniconda3/bin/conda init bash
+RUN ~/miniconda3/bin/conda init zsh
+RUN bash
+RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8
+RUN ~/miniconda3/bin/conda install python=3.6
+RUN ~/miniconda3/bin/pip install ffmpeg tensorflow==2.5.0
+RUN ~/miniconda3/bin/conda install -c conda-forge libsndfile
+RUN ~/miniconda3/bin/pip install spleeter
+RUN apt-get install ffmpeg -y
 
 # set app config option
 ENV FLASK_ENV=production
@@ -25,20 +46,11 @@ ARG AWS_SECRET_ACCESS_KEY
 ARG AWS_DEFAULT_REGION
 # flask form key
 ARG FLASK_SECRET_KEY
-# AWS RDS vars
-ARG POSTGRES_USER
-ARG POSTGRES_PW
-ARG POSTGRES_URL
-ARG POSTGRES_DB
 
 ENV AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
 ENV AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
 ENV AWS_DEFAULT_REGION $AWS_DEFAULT_REGION
 ENV FLASK_SECRET_KEY $FLASK_SECRET_KEY
-ENV POSTGRES_USER $POSTGRES_USER
-ENV POSTGRES_PW $POSTGRES_PW
-ENV POSTGRES_URL $POSTGRES_URL
-ENV POSTGRES_DB $POSTGRES_DB
 
 # Avoid cache purge by adding requirements first
 ADD ./requirements.txt ./requirements.txt
