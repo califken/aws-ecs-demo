@@ -1,0 +1,23 @@
+{
+    "name": "docker_web_app",
+    "version": "1.0.0",
+    "description": "Node.js on Docker",
+    "author": "First Last <first.last@example.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "@google-cloud/storage": "^5.18.2",
+        "archiver": "^5.3.0",
+        "async-get-file": "^1.0.4",
+        "axios": "^0.24.0",
+        "express": "^4.17.3",
+        "ffmpeg": "^0.0.4",
+        "firebase": "^9.6.7",
+        "firebase-admin": "^10.0.2",
+        "gcc": "^1.0.2",
+        "locales": "^0.0.2",
+        "request": "^2.88.2"
+    }
+}

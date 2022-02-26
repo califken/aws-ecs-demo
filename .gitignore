@@ -5,3 +5,4 @@ __pycache__/
 aws-secret-envs.txt
 *.docx
 *.tmp
+node_modules
